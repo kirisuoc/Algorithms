@@ -78,3 +78,42 @@ Clase 2 - Divide y vencerás: Merge Sort
 			k ← k + 1
 		end while
 	end procedure
+
+Clase 3 - QuickSort (ordenación rápida)
+
+* Es uno de los algoritmos más usados por su velocidad promedio. Se basa en
+* divide y vencerás.
+* 1. Se elige un pivote
+* 2. Se particiona el array: todos los elementos < pivot a un lado, los ≥ pivot al otro
+* 3. Se ordenan recursivamente ambas partes
+*
+* COMPLEJIDADES:
+* - Promedio: O(n log n)
+* - Peor caso (si el pivot es pésimo): O(n^2)
+* - Muy rápido en práctica
+* - In-place
+* - No estable
+
+* PSEUDOCÓDIGO
+	procedure quickSort(A, low, high)
+		if low < high then
+			p ← partition(A, low, high)
+			quickSort(A, low, p - 1)
+			quickSort(A, p + 1, high)
+		end if
+	end procedure
+
+	procedure partition(A, low, high)
+		pivot ← A[high]
+		i ← low - 1
+
+		for j ← low to high - 1 do
+			if A[j] ≤ pivot then
+				i ← i + 1
+				swap(A[i], A[j])
+			end if
+		end for
+
+		swap(A[i + 1], A[high])
+		return i + 1
+	end procedure
